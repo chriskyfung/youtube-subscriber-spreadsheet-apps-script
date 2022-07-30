@@ -25,3 +25,14 @@ Push your JavaScript project to Google Apps Script using
    The **first time** you execute this command, CLASP cli will ask you to overwrite manifest file [`appsscript.json`](./appsscript.json) of the project, insert `y` key and press `enter`.
 
    This file contains the configuration required by Google to manage permissions and access to your project.
+
+## Screenshots
+
+![Screenshot of Google Spreadsheet](/assets/images/screenshot-gsheet.png)
+
+## Supported languages
+
+| Language | Search Query                                                             |
+| -------- | ------------------------------------------------------------------ |
+| English  | Email subject: {_Subsciber Name_} has subscribed to you on YouTube |
+| 繁體中文 | 電郵主題: {_訂閱者名稱_} 訂閱了你的 YouTube 頻道                   |

@@ -223,9 +223,10 @@ $RECYCLE.BIN/
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
-.clasp.json
 private.[gj]s
 appsscript.json
 node_modules
 .clasp.json.bk
 .clasp.json
+.clasp.json.template.config
+.clasp.json.production.config

@@ -30,7 +30,7 @@ Push your JavaScript project to Google Apps Script using
 
 ![Screenshot of Google Spreadsheet](/assets/images/screenshot-gsheet.png)
 
-## Supported languages
+## Language Support
 
 | Language | Search Query                                                             |
 | -------- | ------------------------------------------------------------------ |

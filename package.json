@@ -1,6 +1,6 @@
 {
   "name": "youtube-subscriber-spreadsheet-apps-script",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Chris K.Y. Fung",
   "description": "Google Apps Script to extract and record the information of your YouTube subscribers from Gmail to Google Sheet",
   "license": "AGPL-3.0",

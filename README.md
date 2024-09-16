@@ -1,6 +1,6 @@
 Based on [EZ CLASP](https://github.com/cristobalgvera/ez-clasp) template
 
-# 💻 TL;DR:
+# 💻 TL;DR
 
 This project is a [Google Apps Script](https://developers.google.com/apps-script) to extract and record the information of your YouTube subscribers from Gmail to Google Sheet.
 
@@ -32,7 +32,8 @@ Push your JavaScript project to Google Apps Script using
 
 ## Language Support
 
-| Language | Search Query                                                             |
-| -------- | ------------------------------------------------------------------ |
-| English  | Email subject: {_Subsciber Name_} has subscribed to you on YouTube |
-| 繁體中文 | 電郵主題: {_訂閱者名稱_} 訂閱了你的 YouTube 頻道                   |
+| Language   | Search Query                                                       |
+| ---------- | ------------------------------------------------------------------ |
+| English    | Email subject: {_Subsciber Name_} has subscribed to you on YouTube |
+| 中文(香港) | 電郵主題: {_訂閱者名稱_} 訂閱了你的 YouTube 頻道                   |
+| 中文(台灣) | 電郵主題: {_訂閱者名稱_} 訂閱了您的 YouTube 頻道                   |

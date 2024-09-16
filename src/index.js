@@ -3,10 +3,11 @@
 
 // @ts-ignore
 
-const locates = ['en', 'zh'];
+const locates = ['en', 'hk', 'tw'];
 const lang = {
   en: 'has subscribed to you on YouTube',
-  zh: '訂閱了你的 YouTube 頻道',
+  hk: '訂閱了你的 YouTube 頻道',
+  tw: '訂閱了您的 YouTube 頻道'
 };
 
 function getObjFromGmail(options) {
@@ -21,7 +22,7 @@ function getObjFromGmail(options) {
       const message = thread.getMessages()[0];
       const re = new RegExp(
         '<a href=\\S*?"https:\\/\\/(?<url>[\\S]+)".+>(?<name>.+)<\\/a>.*?' +
-          lang[options.lang],
+        lang[options.lang],
       );
       const match = message.getBody().match(re);
       if (match) {

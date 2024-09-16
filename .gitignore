@@ -230,3 +230,4 @@ node_modules
 .clasp.json
 .clasp.json.template.config
 .clasp.json.production.config
+build/*

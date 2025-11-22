@@ -90,9 +90,6 @@ module.exports = tseslint.config(
     {
         files: ['**/*.test.ts', '**/*.spec.ts'],
         ...jestPlugin.configs['flat/recommended'],
-        rules: {
-            ...jestPlugin.configs['flat/recommended'].rules,
-        },
     },
 
     // 7. Prettier configuration (must be last)

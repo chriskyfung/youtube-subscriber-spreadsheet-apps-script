@@ -1,11 +1,5 @@
-// @ts-check
-
 /** @type {import('prettier').Options} */
-const prettierConfig = {
+module.exports = {
   trailingComma: 'all',
   singleQuote: true,
-};
-
-module.exports = {
-  ...prettierConfig,
 };

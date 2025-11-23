@@ -1,11 +1,6 @@
 // @ts-ignore
 
-const locates = ['en', 'hk', 'tw'];
-const lang = {
-  en: 'has subscribed to you on YouTube',
-  hk: '訂閱了你的 YouTube 頻道',
-  tw: '訂閱了您的 YouTube 頻道',
-};
+import { LOCATES as locates, LANG as lang, regex } from './constants';
 
 function getObjFromGmail(options) {
   const gmailThreads = GmailApp.search(
@@ -17,10 +12,7 @@ function getObjFromGmail(options) {
     const numOfMessages = thread.getMessageCount();
     if (numOfMessages === 1) {
       const message = thread.getMessages()[0];
-      const re = new RegExp(
-        '<a href=\\S*?"https:\\/\\/(?<url>[\\S]+)".+>(?<name>.+)<\\/a>.*?' +
-          lang[options.lang],
-      );
+      const re = regex(options);
       const match = message.getBody().match(re);
       if (match) {
         validThreads.push(thread);

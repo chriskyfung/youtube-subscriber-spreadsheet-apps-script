@@ -1,6 +1,6 @@
 // @ts-ignore
 
-import { locates, lang, regex } from './constants';
+import { LOCATES as locates, LANG as lang, regex } from './constants';
 
 function getObjFromGmail(options) {
   const gmailThreads = GmailApp.search(

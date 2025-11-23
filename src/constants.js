@@ -1,6 +1,6 @@
-export const locates = ['en', 'hk', 'tw'];
+export const LOCATES = ['en', 'hk', 'tw'];
 
-export const lang = {
+export const LANG = {
   en: 'has subscribed to you on YouTube',
   hk: '訂閱了你的 YouTube 頻道',
   tw: '訂閱了您的 YouTube 頻道',

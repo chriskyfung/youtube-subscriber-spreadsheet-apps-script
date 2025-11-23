@@ -8,11 +8,11 @@ function getObjFromGmail(options) {
   );
   const objArray = [];
   const validThreads = [];
+  const re = regex(options);
   gmailThreads.forEach((thread) => {
     const numOfMessages = thread.getMessageCount();
     if (numOfMessages === 1) {
       const message = thread.getMessages()[0];
-      const re = regex(options);
       const match = message.getBody().match(re);
       if (match) {
         validThreads.push(thread);

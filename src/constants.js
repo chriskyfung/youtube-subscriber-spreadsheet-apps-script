@@ -8,6 +8,6 @@ export const LANG = {
 
 export const regex = (options) =>
   new RegExp(
-    '<a href=\\S*?"https:\\/\\/(?<url>[\\S]+)".+>(?<name>.+)<\\/a>.*?' +
-      lang[options.lang],
+    `<a.*?href=\"\\S*?https:\\/\\/(?<url>\\S+)\".*?>(?<name>[\\s\\S]+?)<\\/a>\\s*.*?${LANG[options.lang]}`,
+    's',
   );

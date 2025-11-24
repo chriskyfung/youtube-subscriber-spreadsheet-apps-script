@@ -74,7 +74,10 @@ describe('gmailService', () => {
       expect(() => getObjFromGmail(options)).toThrow(error);
     });
 
-    it('should handle errors during thread processing', () => {
+    it('should log an error and skip threads that cause processing errors', () => {
+      const consoleErrorSpy = jest
+        .spyOn(console, 'error')
+        .mockImplementation(() => {});
       const erroringThread = {
         ...mockThread,
         getId: () => 'error-thread',
@@ -82,10 +85,22 @@ describe('gmailService', () => {
           throw new Error('Test processing error');
         },
       };
-      GmailApp.search.mockReturnValue([erroringThread]);
+      // Return one erroring thread and one valid thread
+      GmailApp.search.mockReturnValue([erroringThread, mockThread]);
+
       const { threads, info } = getObjFromGmail(options);
-      expect(threads).toHaveLength(0);
-      expect(info).toHaveLength(0);
+
+      // Check that the valid thread was processed
+      expect(threads).toHaveLength(1);
+      expect(info).toHaveLength(1);
+
+      // Check that the error was logged
+      expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(consoleErrorSpy).toHaveBeenCalledWith(
+        expect.stringContaining('Error processing thread'),
+      );
+
+      consoleErrorSpy.mockRestore();
     });
   });
 
@@ -103,10 +118,12 @@ describe('gmailService', () => {
       toTrash(threads);
 
       expect(GmailApp.moveThreadsToTrash).toHaveBeenCalledTimes(2);
-      expect(GmailApp.moveThreadsToTrash).toHaveBeenCalledWith(
+      expect(GmailApp.moveThreadsToTrash).toHaveBeenNthCalledWith(
+        1,
         threads.slice(0, 100),
       );
-      expect(GmailApp.moveThreadsToTrash).toHaveBeenCalledWith(
+      expect(GmailApp.moveThreadsToTrash).toHaveBeenNthCalledWith(
+        2,
         threads.slice(100, 200),
       );
     });

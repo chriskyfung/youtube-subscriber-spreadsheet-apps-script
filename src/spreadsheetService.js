@@ -1,3 +1,16 @@
+/**
+ * @typedef {object} SubscriberInfo
+ * @property {string} id The Gmail thread ID.
+ * @property {Date} date The date of the email.
+ * @property {string} channel The YouTube channel name this notification is for.
+ * @property {{url: string, name: string}} subscriber The subscriber's information.
+ */
+
+/**
+ * Writes an array of subscriber objects to the active spreadsheet.
+ *
+ * @param {SubscriberInfo[]} [objArray=[]] An array of subscriber objects.
+ */
 export function writeToSpreadsheet(objArray = []) {
   if (objArray.length === 0) {
     console.log('No new rows to add.');

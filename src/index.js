@@ -4,6 +4,12 @@ import { LOCATES } from './constants';
 import { getObjFromGmail, toTrash } from './gmailService';
 import { writeToSpreadsheet } from './spreadsheetService';
 
+/**
+ * The main function to be run in the Google Apps Script environment.
+ * It iterates through the specified languages, retrieves subscriber information from Gmail,
+ * writes the information to a spreadsheet, and moves the processed emails to the trash.
+ * @see {@link https://developers.google.com/apps-script/reference/base/doc-comment-tag}
+ */
 // eslint-disable-next-line no-unused-vars
 function main() {
   try {

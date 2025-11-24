@@ -14,5 +14,6 @@ export function writeToSpreadsheet(objArray = []) {
     console.log(`Added ${objArray.length} new rows to spreadsheet!`);
   } catch (error) {
     console.error(`Error writing to spreadsheet: ${error.message}`);
+    throw error;
   }
 }

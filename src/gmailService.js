@@ -48,7 +48,7 @@ export function getObjFromGmail(options) {
     );
   } catch (error) {
     console.error(`Error searching Gmail: ${error.message}`);
-    return { threads: [], info: [] };
+    throw error;
   }
 }
 
@@ -64,5 +64,6 @@ export function toTrash(threads = []) {
     console.log(`Moved ${threads.length} to Trash!`);
   } catch (error) {
     console.error(`Error moving threads to trash: ${error.message}`);
+    throw error;
   }
 }

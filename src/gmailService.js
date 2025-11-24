@@ -20,7 +20,7 @@ export function getObjFromGmail(options) {
           id: thread.getId(),
           date: message.getDate(),
           channel: getChannelFromEmail(message),
-          subsciber: match.groups,
+          subscriber: match.groups,
         });
       } else {
         console.error(

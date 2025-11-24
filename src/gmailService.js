@@ -43,8 +43,8 @@ export function toTrash(threads = []) {
   if (threads.length <= 100) {
     GmailApp.moveThreadsToTrash(threads);
   } else {
-    for (let i = 0; i < threads.length; i + 100) {
-      GmailApp.moveThreadsToTrash(threads.slice(i, i + 99));
+    for (let i = 0; i < threads.length; i += 100) {
+      GmailApp.moveThreadsToTrash(threads.slice(i, i + 100));
     }
   }
   console.log(`Moved ${threads.length} to Trash!`);

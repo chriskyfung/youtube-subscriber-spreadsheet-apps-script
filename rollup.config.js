@@ -1,5 +1,8 @@
 const { babel } = require('@rollup/plugin-babel');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const { readFileSync } = require('node:fs');
+
+const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
 
 const extensions = ['.ts', '.js'];
 
@@ -23,6 +26,13 @@ module.exports = {
     {
       dir: 'build',
       format: 'cjs',
+      banner: `/*!
+  ${packageJson.name} v${packageJson.version}
+  ${packageJson.description}
+  (c) ${new Date().getFullYear()} ${packageJson.author}
+  License: ${packageJson.license}
+  Source: ${packageJson.repository && packageJson.repository.url ? packageJson.repository.url.replace('git+', '') : packageJson.homepage ? packageJson.homepage : packageJson.bugs && packageJson.bugs.url ? packageJson.bugs.url : `https://github.com/${packageJson.author.split('(')[0].trim().split(' ').join('/')}/${packageJson.name}`}
+*/`,
     },
   ],
   plugins: [

@@ -44,13 +44,13 @@ describe('writeToSpreadsheet', () => {
     ]);
   });
 
-  it('should handle an empty array without errors', () => {
+  it('should not call sheet methods for an empty array', () => {
     writeToSpreadsheet([]);
 
-    expect(SpreadsheetApp.getActiveSheet).toHaveBeenCalledTimes(1);
-    expect(mockSheet.insertRowsAfter).toHaveBeenCalledWith(1, 0);
-    expect(mockSheet.getRange).toHaveBeenCalledWith(2, 1, 0, 3);
-    expect(mockRange.setValues).toHaveBeenCalledWith([]);
+    expect(SpreadsheetApp.getActiveSheet).not.toHaveBeenCalled();
+    expect(mockSheet.insertRowsAfter).not.toHaveBeenCalled();
+    expect(mockSheet.getRange).not.toHaveBeenCalled();
+    expect(mockRange.setValues).not.toHaveBeenCalled();
   });
 
   it('should throw an error if SpreadsheetApp fails', () => {

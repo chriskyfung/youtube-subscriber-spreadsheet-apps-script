@@ -23,7 +23,6 @@
     "push": "clasp push",
     "push:watch": "npm run push -- --watch",
     "test": "jest",
-    "test:coverage": "jest --coverage",
     "test:file": "jest --bail --findRelatedTests --passWithNoTests",
     "test:watch": "npm run test -- --watchAll",
     "check:all": "npm run lint:check && npm run format:check && npm run types:check && npm test",

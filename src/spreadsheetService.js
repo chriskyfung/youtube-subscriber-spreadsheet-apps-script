@@ -1,4 +1,8 @@
 export function writeToSpreadsheet(objArray = []) {
+  if (objArray.length === 0) {
+    console.log('No new rows to add.');
+    return;
+  }
   try {
     const sheet = SpreadsheetApp.getActiveSheet();
 

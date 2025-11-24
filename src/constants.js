@@ -9,8 +9,8 @@ export const LANG = {
 /**
  * Creates a regular expression to extract subscriber information from the HTML body of a YouTube notification email.
  *
- * @param {{lang: 'en'|'hk'|'tw'}} options The options object.
- * @param {string} options.lang The language of the email.
+ * @param {object} options The options object.
+ * @param {'en'|'hk'|'tw'} options.lang The language of the email.
  * @returns {RegExp} The regular expression.
  */
 export const regex = (options) =>

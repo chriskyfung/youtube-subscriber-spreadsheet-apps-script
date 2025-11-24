@@ -3,11 +3,25 @@ import { GMAIL_CONFIG } from './config';
 import { getChannelFromEmail } from './utils';
 
 /**
+ * @typedef {object} SubscriberInfo
+ * @property {string} id The Gmail thread ID.
+ * @property {Date} date The date of the email.
+ * @property {string} channel The YouTube channel name this notification is for.
+ * @property {{url: string, name: string}} subscriber The subscriber's information.
+ */
+
+/**
+ * @typedef {object} GmailExtractionResult
+ * @property {GoogleAppsScript.Gmail.GmailThread[]} threads The processed Gmail threads.
+ * @property {SubscriberInfo[]} info The extracted subscriber information.
+ */
+
+/**
  * Retrieves YouTube subscriber notification emails from Gmail, extracts subscriber information, and returns the data along with the corresponding Gmail threads.
  *
- * @param {{lang: 'en'|'hk'|'tw'}} options The options object.
- * @param {string} options.lang The language of the email.
- * @returns {{threads: GoogleAppsScript.Gmail.GmailThread[], info: {id: string, date: Date, channel: string, subscriber: {url: string, name: string}}[]}} An object containing the Gmail threads and the extracted subscriber information.
+ * @param {object} options The options object.
+ * @param {'en'|'hk'|'tw'} options.lang The language of the email.
+ * @returns {GmailExtractionResult} An object containing the Gmail threads and the extracted subscriber information.
  */
 export function getObjFromGmail(options) {
   try {
@@ -62,7 +76,7 @@ export function getObjFromGmail(options) {
 /**
  * Moves an array of Gmail threads to the trash.
  *
- * @param {GoogleAppsScript.Gmail.GmailThread[]} threads An array of Gmail threads to be moved to the trash.
+ * @param {GoogleAppsScript.Gmail.GmailThread[]} [threads=[]] An array of Gmail threads to be moved to the trash.
  */
 export function toTrash(threads = []) {
   try {

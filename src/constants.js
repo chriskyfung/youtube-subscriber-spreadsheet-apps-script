@@ -6,6 +6,13 @@ export const LANG = {
   tw: '訂閱了您的 YouTube 頻道',
 };
 
+/**
+ * Creates a regular expression to extract subscriber information from the HTML body of a YouTube notification email.
+ *
+ * @param {{lang: 'en'|'hk'|'tw'}} options The options object.
+ * @param {string} options.lang The language of the email.
+ * @returns {RegExp} The regular expression.
+ */
 export const regex = (options) =>
   new RegExp(
     `<a.*?href=\"\\S*?https:\\/\\/(?<url>\\S+)\".*?>(?<name>[\\s\\S]+?)<\\/a>\\s*.*?${LANG[options.lang]}`,

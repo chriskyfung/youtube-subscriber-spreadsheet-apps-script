@@ -2,6 +2,13 @@ import { LANG, regex } from './constants';
 import { GMAIL_CONFIG } from './config';
 import { getChannelFromEmail } from './utils';
 
+/**
+ * Retrieves YouTube subscriber notification emails from Gmail, extracts subscriber information, and returns the data along with the corresponding Gmail threads.
+ *
+ * @param {{lang: 'en'|'hk'|'tw'}} options The options object.
+ * @param {string} options.lang The language of the email.
+ * @returns {{threads: GoogleAppsScript.Gmail.GmailThread[], info: {id: string, date: Date, channel: string, subscriber: {url: string, name: string}}[]}} An object containing the Gmail threads and the extracted subscriber information.
+ */
 export function getObjFromGmail(options) {
   try {
     const gmailThreads = GmailApp.search(
@@ -52,6 +59,11 @@ export function getObjFromGmail(options) {
   }
 }
 
+/**
+ * Moves an array of Gmail threads to the trash.
+ *
+ * @param {GoogleAppsScript.Gmail.GmailThread[]} threads An array of Gmail threads to be moved to the trash.
+ */
 export function toTrash(threads = []) {
   try {
     if (threads.length <= 100) {

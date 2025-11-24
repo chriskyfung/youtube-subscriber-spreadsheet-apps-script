@@ -1,3 +1,8 @@
+/**
+ * Writes an array of subscriber objects to the active spreadsheet.
+ *
+ * @param {{date: Date, subscriber: {url: string, name: string}, channel: string}[]} [objArray=[]] An array of subscriber objects.
+ */
 export function writeToSpreadsheet(objArray = []) {
   if (objArray.length === 0) {
     console.log('No new rows to add.');

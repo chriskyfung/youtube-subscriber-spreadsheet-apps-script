@@ -31,7 +31,7 @@ module.exports = {
   ${packageJson.description}
   (c) ${new Date().getFullYear()} ${packageJson.author}
   License: ${packageJson.license}
-  Source: ${packageJson.repository && packageJson.repository.url ? packageJson.repository.url.replace('git+', '') : packageJson.homepage ? packageJson.homepage : packageJson.bugs && packageJson.bugs.url ? packageJson.bugs.url : `https://github.com/${packageJson.author.split('(')[0].trim().split(' ').join('/')}/${packageJson.name}`}
+  Source: ${packageJson.repository && packageJson.repository.url ? packageJson.repository.url.replace('git+', '') : packageJson.homepage ? packageJson.homepage.split('#')[0] : ''}
 */`,
     },
   ],

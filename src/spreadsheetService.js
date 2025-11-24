@@ -10,5 +10,5 @@ export function writeToSpreadsheet(objArray = []) {
   sheet.insertRowsAfter(1, objArray.length);
   const range = sheet.getRange(2, 1, objArray.length, 3);
   range.setValues(table);
-  console.log(`Added ${objArray.length} new rows to spread sheet!`);
+  console.log(`Added ${objArray.length} new rows to spreadsheet!`);
 }

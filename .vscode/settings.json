@@ -19,5 +19,8 @@
       "fileMatch": ["tsconfig.json"],
       "url": "http://json.schemastore.org/tsconfig"
     }
-  ]
+  ],
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  }
 }

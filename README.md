@@ -170,13 +170,4 @@ For more details, please refer to the [full license text](LICENSE).
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you have suggestions for improvements, new features, or bug fixes, please follow these steps:
-
-1.  **Fork** the repository.
-2.  **Create a new branch** for your feature or fix: `git checkout -b feature/your-feature-name` or `git checkout -b fix/bug-description`.
-3.  **Make your changes** and ensure they are well-tested.
-4.  **Commit your changes** with a clear and descriptive commit message.
-5.  **Push your branch** to your forked repository.
-6.  **Open a Pull Request** to the `main` branch of this repository.
-
-Please ensure your code adheres to the project's coding style and includes appropriate documentation and tests.
+Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) to get started.

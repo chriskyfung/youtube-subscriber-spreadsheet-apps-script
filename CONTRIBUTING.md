@@ -10,11 +10,11 @@ This project and everyone participating in it is governed by a [Code of Conduct]
 
 ### Reporting Bugs
 
-If you find a bug, please open an issue on our [issue tracker](https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script/issues). Please include a clear title, a description of the bug, and steps to reproduce it.
+If you find a bug, please [open a bug report](https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script/issues/new?template=issue_template.md). The template will guide you through providing the necessary information.
 
 ### Suggesting Enhancements
 
-If you have an idea for an enhancement, please open an issue on our [issue tracker](https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script/issues). Describe your suggestion and why it would be beneficial.
+If you have an idea for an enhancement, please [open an issue to suggest it](https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script/issues/new). Describe your suggestion and why it would be beneficial.
 
 ### Pull Requests
 

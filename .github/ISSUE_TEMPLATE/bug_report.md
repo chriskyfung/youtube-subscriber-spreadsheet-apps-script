@@ -40,6 +40,9 @@ Please provide the following details about your development environment.
 2. Function executed.
 3. Steps to reproduce the error.
 
+**Actual Behavior**
+A clear and concise description of what actually happened.
+
 **Expected Behavior**
 A clear and concise description of what you expected to happen.
 
@@ -66,6 +69,9 @@ const LOCALE = 'en';
 
 **Command Executed**
 Which `npm` script or command did you run? (e.g., `npm test`, `npm run build`, `npm run lint:fix`)
+
+**Actual Behavior**
+A clear and concise description of what actually happened.
 
 **Terminal Output / Error Logs**
 Please paste the full terminal output, including the error message.

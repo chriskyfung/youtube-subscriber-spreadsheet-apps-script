@@ -23,7 +23,7 @@ describe('writeToSpreadsheet', () => {
       {
         date: new Date('2023-01-01'),
         subscriber: {
-          url: 'youtube.com/channel/UC123',
+          url: 'https://youtube.com/channel/UC123',
           name: 'Test Subscriber',
         },
         channel: 'Test Channel',

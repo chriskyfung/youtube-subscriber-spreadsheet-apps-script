@@ -1,125 +1,55 @@
-import { regex, LANG } from './constants';
+import { regex } from './constants';
 
 describe('regex for YouTube subscription messages', () => {
-  // Common language option for testing
-  const options = { lang: 'en' };
-  const expectedLangText = LANG[options.lang];
-
-  // --- Positive Test Cases ---
-
-  test('should match a single-line HTML anchor tag with no extra spaces', () => {
-    const html = `<a href="https://youtube.com/channel/UC123">Channel Name</a>${expectedLangText}`;
+  // Test case for English language
+  test('should correctly extract URL and name from English subscription message', () => {
+    const options = { lang: 'en' };
+    const html = `<a href="https://www.youtube.com/attribution_link?a=xxxxxxxxxxxxxxxx&amp;u=/channel/yyyyyyyyyyyyy-yyyyyyyyyy%3Ffeature%3Dhttps://www.youtube.com/channel/yyyyyyyyyyyyy-yyyyyyyyyy%253Ffeature%253Dem-subscription_create" style="text-decoration:none; color:#1C62B9;">New Subscriber Name</a> has subscribed to you on YouTube`;
     const match = html.match(regex(options));
     expect(match).not.toBeNull();
-    expect(match.groups.url).toBe('youtube.com/channel/UC123');
-    expect(match.groups.name).toBe('Channel Name');
+    expect(match.groups.url).toBe(
+      'https://www.youtube.com/channel/yyyyyyyyyyyyy-yyyyyyyyyy',
+    );
+    expect(match.groups.name).toBe('New Subscriber Name');
   });
 
-  test('should match a single-line HTML anchor tag with leading/trailing spaces in name', () => {
-    const html = `<a href="https://youtube.com/channel/UC123">  Channel Name  </a>${expectedLangText}`;
+  // Test case for Traditional Chinese (Hong Kong) language
+  test('should correctly extract URL and name from Traditional Chinese (Hong Kong) subscription message', () => {
+    const options = { lang: 'hk' };
+    const html = `「<a href="https://www.youtube.com/attribution_link?a=xxxxxxxxxxxxxxxx&amp;u=/channel/yyyyyyyyyyyyyyyyyyyyyyyy%3Ffeature%3Dhttps://www.youtube.com/channel/yyyyyyyyyyyyyyyyyyyyyyyy%253Ffeature%253Dem-subscription_create" style="text-decoration:none; color:#1C62B9;">新訂閱者名稱_HK</a>」訂閱了你的 YouTube 頻道`;
     const match = html.match(regex(options));
     expect(match).not.toBeNull();
-    expect(match.groups.url).toBe('youtube.com/channel/UC123');
-    expect(match.groups.name).toBe('  Channel Name  '); // Should capture exact content
+    expect(match.groups.url).toBe(
+      'https://www.youtube.com/channel/yyyyyyyyyyyyyyyyyyyyyyyy',
+    );
+    expect(match.groups.name).toBe('新訂閱者名稱_HK');
   });
 
-  test('should match a multi-line HTML anchor tag with indentation', () => {
-    const html = `
-      <a href="https://youtube.com/channel/UC456">
-        Multi-line Channel Name
-      </a>
-      ${expectedLangText}`;
+  // Test case for Traditional Chinese (Taiwan) language - Assuming LANG.tw is '訂閱了您的 YouTube 頻道'
+  test('should correctly extract URL and name from Traditional Chinese (Taiwan) subscription message', () => {
+    const options = { lang: 'tw' };
+    const html = `「<a href="https://www.youtube.com/attribution_link?a=xxxxxxxxxxxxxxxx&amp;u=/channel/zzzzzzzzzzzzzzzzzzzzzzzzzz%3Ffeature%3Dhttps://www.youtube.com/channel/zzzzzzzzzzzzzzzzzzzzzzzzzz%253Ffeature%253Dem-subscription_create" style="text-decoration:none; color:#1C62B9;">新訂閱者名稱_TW</a>」訂閱了您的 YouTube 頻道`;
     const match = html.match(regex(options));
     expect(match).not.toBeNull();
-    expect(match.groups.url).toBe('youtube.com/channel/UC456');
-    expect(match.groups.name.trim()).toBe('Multi-line Channel Name');
+    expect(match.groups.url).toBe(
+      'https://www.youtube.com/channel/zzzzzzzzzzzzzzzzzzzzzzzzzz',
+    );
+    expect(match.groups.name).toBe('新訂閱者名稱_TW');
   });
 
-  test('should match with additional attributes in anchor tag', () => {
-    const html = `<a target="_blank" class="yt-link" href="https://youtube.com/channel/UC789">Another Channel</a>${expectedLangText}`;
-    const match = html.match(regex(options));
-    expect(match).not.toBeNull();
-    expect(match.groups.url).toBe('youtube.com/channel/UC789');
-    expect(match.groups.name).toBe('Another Channel');
-  });
-
-  test('should match when the subscription text is immediately after the anchor tag', () => {
-    const html = `<a href="https://youtube.com/channel/UC101">Direct Channel</a>${expectedLangText}`;
-    const match = html.match(regex(options));
-    expect(match).not.toBeNull();
-    expect(match.groups.url).toBe('youtube.com/channel/UC101');
-    expect(match.groups.name).toBe('Direct Channel');
-  });
-
-  test('should match when the subscription text is on a new line after the anchor tag', () => {
-    const html = `
-      <a href="https://youtube.com/channel/UC202">Channel Two</a>
-      ${expectedLangText}`;
-    const match = html.match(regex(options));
-    expect(match).not.toBeNull();
-    expect(match.groups.url).toBe('youtube.com/channel/UC202');
-    expect(match.groups.name.trim()).toBe('Channel Two');
-  });
-
-  test('should match with complex nested content in name (though unlikely for channel names)', () => {
-    const html = `<a href="https://youtube.com/channel/UC303"><b>Bold</b> <i>Channel</i> Name</a>${expectedLangText}`;
-    const match = html.match(regex(options));
-    expect(match).not.toBeNull();
-    expect(match.groups.url).toBe('youtube.com/channel/UC303');
-    expect(match.groups.name).toBe('<b>Bold</b> <i>Channel</i> Name');
-  });
-
-  // --- Negative Test Cases ---
-
-  test('should NOT match if the href does not contain https://youtube.com', () => {
-    const html = `<a href="http://example.com/channel/UCABC">Invalid Channel</a>${expectedLangText}`;
+  // Negative test case: should NOT match if the href does not contain the attribution_link structure
+  test('should NOT match a plain YouTube channel URL without attribution_link', () => {
+    const options = { lang: 'en' };
+    const html = `<a href="https://www.youtube.com/channel/UC123">Channel Name</a> has subscribed to you on YouTube`;
     const match = html.match(regex(options));
     expect(match).toBeNull();
   });
 
+  // Negative test case: should NOT match if the language text is missing
   test('should NOT match if the language text is missing', () => {
-    const html = `<a href="https://youtube.com/channel/UCDEF">Missing Text Channel</a>`;
+    const options = { lang: 'en' };
+    const html = `<a href="https://www.youtube.com/attribution_link?a=xxxxxxxxxxxxxxxx&u=/channel/yyyyyyyyyyyyy-yyyyyyyyyy%3Ffeature%3Dhttps://www.youtube.com/channel/yyyyyyyyyyyyy-yyyyyyyyyy%253Ffeature%253Dem-subscription_create" style="text-decoration:none; color:#1C62B9;">New Subscriber Name</a>`;
     const match = html.match(regex(options));
     expect(match).toBeNull();
-  });
-
-  test('should NOT match if the closing </a> tag is missing', () => {
-    const html = `<a href="https://youtube.com/channel/UCGHI">Missing Close Tag Channel${expectedLangText}`;
-    const match = html.match(regex(options));
-    expect(match).toBeNull();
-  });
-
-  test('should NOT match if the opening <a> tag is malformed', () => {
-    const html = `<a href=https://youtube.com/channel/UCJKL">Malformed Link</a>${expectedLangText}`;
-    const match = html.match(regex(options));
-    expect(match).toBeNull();
-  });
-
-  test('should NOT match if the URL is incomplete', () => {
-    const html = `<a href="https://youtube.com/">Incomplete URL</a>${expectedLangText}`;
-    const match = html.match(regex(options));
-    expect(match).not.toBeNull(); // This actually matches because \S+ means one or more non-whitespace. "youtube.com/" is valid.
-    expect(match.groups.url).toBe('youtube.com/');
-    // Re-evaluate this negative test case. If the intent is to ensure a *full* channel ID, the regex needs adjustment.
-    // For now, it matches 'youtube.com/' which is technically valid for \S+.
-    // A more specific regex for a full channel URL might be required if this is a strict requirement.
-  });
-
-  test('should NOT match if href attribute is missing', () => {
-    const html = `<a>Channel Name Without Href</a>${expectedLangText}`;
-    const match = html.match(regex(options));
-    expect(match).toBeNull();
-  });
-
-  test('should NOT match with different language text', () => {
-    const html = `<a href="https://youtube.com/channel/UCXYZ">Some Channel</a>Some other text`;
-    const match = html.match(regex(options));
-    expect(match).toBeNull();
-  });
-
-  test('should NOT match an empty name', () => {
-    const html = `<a href="https://youtube.com/channel/UCXYZ"></a>${expectedLangText}`;
-    const match = html.match(regex(options));
-    expect(match).toBeNull(); // Our regex (?<name>[\\s\\S]+?) requires at least one character
   });
 });

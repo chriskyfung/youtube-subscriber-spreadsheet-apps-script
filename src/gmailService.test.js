@@ -4,7 +4,7 @@ import * as Utils from './utils'; // To mock getChannelFromEmail
 // Mock GmailApp
 const mockMessage = {
   getBody: () =>
-    '<a href="https://youtube.com/channel/UC123">Test Subscriber</a> has subscribed to you on YouTube',
+    '<a href="https://www.youtube.com/attribution_link?a=xxxxxxxxxxxxxxxx&u=/channel/yyyyyyyyyyyyy-yyyyyyyyyy%3Ffeature%3Dhttps://www.youtube.com/channel/yyyyyyyyyyyyy-yyyyyyyyyy%253Ffeature%253Dem-subscription_create" style="text-decoration:none; color:#1C62B9;">Test Subscriber</a> has subscribed to you on YouTube',
   getDate: () => new Date('2023-01-01'),
 };
 
@@ -39,6 +39,9 @@ describe('gmailService', () => {
       expect(threads).toHaveLength(1);
       expect(info).toHaveLength(1);
       expect(info[0].subscriber.name).toBe('Test Subscriber');
+      expect(info[0].subscriber.url).toBe(
+        'https://www.youtube.com/channel/yyyyyyyyyyyyy-yyyyyyyyyy',
+      );
       expect(Utils.getChannelFromEmail).toHaveBeenCalledWith(mockMessage);
     });
 

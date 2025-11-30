@@ -15,6 +15,5 @@ export const LANG = {
  */
 export const regex = (options) =>
   new RegExp(
-    `<a.*?href=\"\\S*?https:\\/\\/(?<url>\\S+)\".*?>(?<name>[\\s\\S]+?)<\\/a>\\s*.*?${LANG[options.lang]}`,
-    's',
+    `<a\\s+href="https:\\/\\/www\\.youtube\\.com\\/attribution_link\\?a=[^&]+?(&|&amp;)u=.*?feature%3D(?<url>https?:\\/\\/www\\.youtube\\.com\\/channel\\/[^%]+).*?>(?<name>.+?)<\\/a>[\\s\\S]*?${LANG[options.lang]}`,
   );

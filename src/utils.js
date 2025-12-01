@@ -49,23 +49,13 @@ function extractAndCleanAttributionLink(url) {
   }
 
   const queryString = url.substring(queryStartIndex + 1);
-  const decodedQueryString = decodeURIComponent(queryString).replace(
-    /&amp;/g,
-    '&',
-  );
+  // First, replace HTML-encoded ampersands, then split into parameters
+  const params = queryString.replace(/&amp;/g, '&').split('&');
 
-  // Split by '&' to find parameters
-  const params = decodedQueryString.split('&');
+  const uParam = params.find((p) => p.startsWith('u='));
 
-  let uParamValue = null;
-  for (const param of params) {
-    if (param.startsWith('u=')) {
-      uParamValue = param.substring(2);
-      break;
-    }
-  }
-
-  if (uParamValue) {
+  if (uParam) {
+    const uParamValue = uParam.substring(2);
     // Recursively call fixHyperlinkUrl on the uParamValue to handle nested problematic formats
     return fixHyperlinkUrl('https://www.youtube.com' + uParamValue);
   }

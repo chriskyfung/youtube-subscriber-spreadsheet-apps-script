@@ -56,6 +56,31 @@ describe('fixHyperlinkUrl', () => {
     const url = 'https://www.youtube.com/watch?v=1234';
     expect(fixHyperlinkUrl(url)).toBe(url);
   });
+
+  it('should return the original URL if it is a valid YouTube channel URL', () => {
+    const url = 'https://www.youtube.com/channel/UCM-gqL3eZTfE2Y0wJd2-S-Q';
+    expect(fixHyperlinkUrl(url)).toBe(url);
+  });
+
+  it('should return the original URL if it is a valid YouTube user URL', () => {
+    const url = 'https://www.youtube.com/user/YouTube';
+    expect(fixHyperlinkUrl(url)).toBe(url);
+  });
+
+  it('should return the original URL if attribution link has no "u" parameter', () => {
+    const url = 'https://www.youtube.com/attribution_link?a=xxxx&b=yyyy';
+    expect(fixHyperlinkUrl(url)).toBe(url);
+  });
+
+  it('should return the original URL if attribution link has no query string', () => {
+    const url = 'https://www.youtube.com/attribution_link';
+    expect(fixHyperlinkUrl(url)).toBe(url);
+  });
+
+  it('should return the original URL if attribution link has query string but no "u" param and no channel/user match', () => {
+    const url = 'https://www.youtube.com/attribution_link?a=xxxx';
+    expect(fixHyperlinkUrl(url)).toBe(url);
+  });
 });
 
 describe('cleanDisplayText', () => {

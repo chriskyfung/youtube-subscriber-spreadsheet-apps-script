@@ -3,6 +3,7 @@ import { writeToSpreadsheet, fixSubscriberLinks } from './spreadsheetService';
 describe('spreadsheetService', () => {
   let mockRange;
   let mockSheet;
+  let consoleLogSpy;
 
   beforeEach(() => {
     mockRange = {
@@ -18,7 +19,12 @@ describe('spreadsheetService', () => {
     global.SpreadsheetApp = {
       getActiveSheet: jest.fn().mockReturnValue(mockSheet),
     };
+    consoleLogSpy = jest.spyOn(console, 'log').mockImplementation(() => {}); // Spy on console.log
     jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    consoleLogSpy.mockRestore(); // Restore console.log after each test
   });
 
   describe('writeToSpreadsheet', () => {
@@ -51,6 +57,7 @@ describe('spreadsheetService', () => {
     it('should not call sheet methods for an empty array', () => {
       writeToSpreadsheet([]);
 
+      expect(consoleLogSpy).toHaveBeenCalledWith('No new rows to add.');
       expect(global.SpreadsheetApp.getActiveSheet).not.toHaveBeenCalled();
       expect(mockSheet.insertRowsAfter).not.toHaveBeenCalled();
       expect(mockSheet.getRange).not.toHaveBeenCalled();
@@ -91,6 +98,54 @@ describe('spreadsheetService', () => {
         ['=HYPERLINK("https://www.youtube.com/user/direct","Direct User")'],
         ['Not a hyperlink'],
       ]);
+      expect(consoleLogSpy).toHaveBeenCalledWith(
+        'Subscriber links in Column B have been fixed.',
+      );
+    });
+
+    it('should fix hyperlink formulas without explicit display text', () => {
+      const formulas = [
+        ['=HYPERLINK("https://www.youtube.com/channel/UC-no-display-text")'],
+      ];
+      mockRange.getFormulas.mockReturnValue(formulas);
+
+      fixSubscriberLinks();
+
+      expect(mockRange.setFormulas).toHaveBeenCalledWith([
+        [
+          '=HYPERLINK("https://www.youtube.com/channel/UC-no-display-text","https://www.youtube.com/channel/UC-no-display-text")',
+        ],
+      ]);
+    });
+
+    it('should fix hyperlink formulas with display text containing </b>', () => {
+      const formulas = [
+        [
+          '=HYPERLINK("https://www.youtube.com/channel/UC-bold-text","Channel Name</b>")',
+        ],
+      ];
+      mockRange.getFormulas.mockReturnValue(formulas);
+
+      fixSubscriberLinks();
+
+      expect(mockRange.setFormulas).toHaveBeenCalledWith([
+        [
+          '=HYPERLINK("https://www.youtube.com/channel/UC-bold-text","Channel Name")',
+        ],
+      ]);
+    });
+
+    it('should throw an error if SpreadsheetApp fails during link fixing', () => {
+      const error = new Error('Spreadsheet service failed during link fixing');
+      mockSheet.getRange.mockImplementation(() => {
+        throw error;
+      });
+
+      expect(() => fixSubscriberLinks()).toThrow(error);
+      expect(global.SpreadsheetApp.getActiveSheet).toHaveBeenCalledTimes(1);
+      expect(consoleLogSpy).not.toHaveBeenCalledWith(
+        'Subscriber links in Column B have been fixed.',
+      );
     });
   });
 });

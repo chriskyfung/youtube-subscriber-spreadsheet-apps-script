@@ -1,4 +1,4 @@
-import { fixHyperlinkUrl } from './utils';
+import { fixHyperlinkUrl, cleanDisplayText } from './utils';
 
 /**
  * @typedef {object} SubscriberInfo
@@ -65,7 +65,8 @@ export function fixSubscriberLinks() {
             displayTextMatch && displayTextMatch[2]
               ? displayTextMatch[2]
               : cleanedUrl;
-          return [`=HYPERLINK("${cleanedUrl}","${displayText}")`];
+          const cleanedDisplayText = cleanDisplayText(displayText);
+          return [`=HYPERLINK("${cleanedUrl}","${cleanedDisplayText}")`];
         }
       }
       return [formula]; // Return original formula (as a 2D array) if not a hyperlink or no match

@@ -71,3 +71,16 @@ function extractAndCleanAttributionLink(url) {
   }
   return url; // Return original URL if no 'u' parameter found or other issues
 }
+
+/**
+ * Trims a trailing </b> tag from a string.
+ *
+ * @param {string} text The text to clean.
+ * @returns {string} The cleaned text.
+ */
+export function cleanDisplayText(text) {
+  if (text.endsWith('</b>')) {
+    return text.slice(0, -4);
+  }
+  return text;
+}

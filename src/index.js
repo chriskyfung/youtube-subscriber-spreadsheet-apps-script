@@ -8,7 +8,7 @@ import { writeToSpreadsheet, fixSubscriberLinks } from './spreadsheetService';
  * Adds a custom menu to the Google Sheet when it is opened.
  * @see {@link https://developers.google.com/apps-script/guides/menus}
  */
-
+// eslint-disable-next-line no-unused-vars
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('YouTube Subscriber Tools')
@@ -22,7 +22,7 @@ function onOpen() {
  * writes the information to a spreadsheet, and moves the processed emails to the trash.
  * @see {@link https://developers.google.com/apps-script/reference/base/doc-comment-tag}
  */
-
+// eslint-disable-next-line no-unused-vars
 function main() {
   try {
     LOCATES.forEach((locate) => {

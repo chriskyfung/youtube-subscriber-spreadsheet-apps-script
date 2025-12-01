@@ -15,11 +15,59 @@ export function getChannelFromEmail(email) {
  * @returns {string} The cleaned YouTube channel URL.
  */
 export function fixHyperlinkUrl(url) {
-  const match = url.match(
-    /https:\/\/www\.youtube\.com\/channel\/[a-zA-Z0-9_-]+/,
+  // First, check if it's an attribution link
+  if (url.includes('attribution_link')) {
+    const cleanedAttributionLink = extractAndCleanAttributionLink(url);
+    // If the attribution link was successfully cleaned, return it.
+    // Otherwise, fall through to the direct link matching.
+    if (cleanedAttributionLink !== url) {
+      return cleanedAttributionLink;
+    }
+  }
+
+  // Then, apply the regex for direct YouTube channel/user URLs
+  let match = url.match(
+    /https?:\/\/www\.youtube\.com\/(channel|user)\/([a-zA-Z0-9_-]+)/,
   );
   if (match) {
-    return match[0];
+    // Ensure the returned URL uses https and reconstruct the clean URL
+    return `https://www.youtube.com/${match[1]}/${match[2]}`;
   }
   return url; // Return original URL if no match found
+}
+
+/**
+ * Extracts and cleans a YouTube channel/user URL from an attribution link.
+ *
+ * @param {string} url The problematic attribution link URL.
+ * @returns {string} The cleaned YouTube channel/user URL, or the original URL if no match.
+ */
+function extractAndCleanAttributionLink(url) {
+  const queryStartIndex = url.indexOf('?');
+  if (queryStartIndex === -1) {
+    return url; // Not a URL with query parameters
+  }
+
+  const queryString = url.substring(queryStartIndex + 1);
+  const decodedQueryString = decodeURIComponent(queryString).replace(
+    /&amp;/g,
+    '&',
+  );
+
+  // Split by '&' to find parameters
+  const params = decodedQueryString.split('&');
+
+  let uParamValue = null;
+  for (const param of params) {
+    if (param.startsWith('u=')) {
+      uParamValue = param.substring(2);
+      break;
+    }
+  }
+
+  if (uParamValue) {
+    // Recursively call fixHyperlinkUrl on the uParamValue to handle nested problematic formats
+    return fixHyperlinkUrl('https://www.youtube.com' + uParamValue);
+  }
+  return url; // Return original URL if no 'u' parameter found or other issues
 }

@@ -2,7 +2,19 @@
 
 import { LOCATES } from './constants';
 import { getObjFromGmail, toTrash } from './gmailService';
-import { writeToSpreadsheet } from './spreadsheetService';
+import { writeToSpreadsheet, fixSubscriberLinks } from './spreadsheetService';
+
+/**
+ * Adds a custom menu to the Google Sheet when it is opened.
+ * @see {@link https://developers.google.com/apps-script/guides/menus}
+ */
+// eslint-disable-next-line no-unused-vars
+function onOpen() {
+  const ui = SpreadsheetApp.getUi();
+  ui.createMenu('YouTube Subscriber Tools')
+    .addItem('Fix Subscriber Links', 'fixLinksInSheet')
+    .addToUi();
+}
 
 /**
  * The main function to be run in the Google Apps Script environment.
@@ -25,4 +37,13 @@ function main() {
   } catch (error) {
     console.error(`An unexpected error occurred: ${error.message}`);
   }
+}
+
+/**
+ * Wrapper function to expose fixSubscriberLinks to Google Apps Script.
+ * @see {@link https://developers.google.com/apps-script/guides/html/reference/run}
+ */
+// eslint-disable-next-line no-unused-vars
+function fixLinksInSheet() {
+  fixSubscriberLinks();
 }

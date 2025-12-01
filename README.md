@@ -14,6 +14,7 @@ This project is a [Google Apps Script](https://developers.google.com/apps-script
 
 - **Automated Subscriber Tracking**: Automatically pulls subscriber information from YouTube notification emails in Gmail.
 - **Google Sheet Integration**: Records subscriber details (name, channel URL, subscription date) into a Google Sheet.
+- **Subscriber Link Fixing**: Automatically identifies and corrects malformed or encoded YouTube subscriber links and cleans display text in Google Sheets.
 - **Multi-language Support**: Configurable to support different languages for email parsing.
 - **Easy Deployment**: Uses Clasp for easy push and pull of code to Google Apps Script.
 

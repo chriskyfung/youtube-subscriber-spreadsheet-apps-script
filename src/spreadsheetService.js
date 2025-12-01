@@ -44,7 +44,7 @@ export function writeToSpreadsheet(objArray = []) {
 export function fixSubscriberLinks() {
   try {
     const sheet = SpreadsheetApp.getActiveSheet();
-    const range = sheet.getRange('B:B');
+    const range = sheet.getRange('B1:B' + (sheet.getLastRow() || 1));
     const formulas = range.getFormulas();
 
     const updatedFormulas = formulas.map((row) => {

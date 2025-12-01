@@ -13,6 +13,7 @@ describe('writeToSpreadsheet', () => {
     mockSheet = {
       insertRowsAfter: jest.fn(),
       getRange: jest.fn().mockReturnValue(mockRange),
+      getLastRow: jest.fn().mockReturnValue(4), // Add mock for getLastRow
     };
     global.SpreadsheetApp = {
       getActiveSheet: jest.fn().mockReturnValue(mockSheet),
@@ -77,6 +78,7 @@ describe('fixSubscriberLinks', () => {
     };
     mockSheet = {
       insertRowsAfter: jest.fn(),
+      getLastRow: jest.fn().mockReturnValue(4),
       getRange: jest.fn().mockReturnValue(mockRange),
     };
     global.SpreadsheetApp = {
@@ -100,7 +102,7 @@ describe('fixSubscriberLinks', () => {
 
     fixSubscriberLinks();
 
-    expect(mockSheet.getRange).toHaveBeenCalledWith('B:B');
+    expect(mockSheet.getRange).toHaveBeenCalledWith('B1:B4');
     expect(mockRange.getFormulas).toHaveBeenCalledTimes(1);
     expect(mockRange.setFormulas).toHaveBeenCalledWith([
       ['=HYPERLINK("https://www.youtube.com/user/zzzz","User ZZZZ")'],

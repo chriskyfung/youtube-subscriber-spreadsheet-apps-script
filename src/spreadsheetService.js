@@ -50,20 +50,17 @@ export function fixSubscriberLinks() {
     const updatedFormulas = formulas.map((row) => {
       const formula = row[0];
       if (formula.startsWith('=HYPERLINK(')) {
-        // Extract the URL from the HYPERLINK formula
-        const urlMatch = formula.match(/=HYPERLINK\("([^"]+)".*?\)/);
-        if (urlMatch && urlMatch[1]) {
-          const originalUrl = urlMatch[1];
+        // Extract the URL and display text from the HYPERLINK formula
+        const hyperlinkRegex = /^=HYPERLINK\("([^"]+)"(?:,"([^"]+)")?\)$/i;
+        const match = formula.match(hyperlinkRegex);
+
+        if (match) {
+          const originalUrl = match[1];
+          const originalDisplayText = match[2]; // This will be undefined if not present
           const cleanedUrl = fixHyperlinkUrl(originalUrl);
-          // Reconstruct the HYPERLINK formula with the cleaned URL
-          // Assuming the display text is the same as the original URL or the channel name from the original process
-          // For simplicity, we'll reuse the display text from the original formula if available
-          const displayTextMatch = formula.match(
-            /=HYPERLINK\(("[^"]+"),"([^"]+)"\)/,
-          );
           const displayText =
-            displayTextMatch && displayTextMatch[2]
-              ? displayTextMatch[2]
+            originalDisplayText !== undefined
+              ? originalDisplayText
               : cleanedUrl;
           const cleanedDisplayText = cleanDisplayText(displayText);
           return [`=HYPERLINK("${cleanedUrl}","${cleanedDisplayText}")`];

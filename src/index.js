@@ -12,6 +12,7 @@ import { writeToSpreadsheet, fixSubscriberLinks } from './spreadsheetService';
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('YouTube Subscriber Tools')
+    .addItem('Run Main Function', 'main')
     .addItem('Fix Subscriber Links', 'fixLinksInSheet')
     .addToUi();
 }

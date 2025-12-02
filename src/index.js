@@ -12,8 +12,8 @@ import { writeToSpreadsheet, fixSubscriberLinks } from './spreadsheetService';
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('YouTube Subscriber Tools')
-    .addItem('Run Main Function', 'main')
-    .addItem('Fix Subscriber Links', 'fixLinksInSheet')
+    .addItem('Run Main Function', main.name)
+    .addItem('Fix Subscriber Links', fixLinksInSheet.name)
     .addToUi();
 }
 
@@ -23,7 +23,6 @@ function onOpen() {
  * writes the information to a spreadsheet, and moves the processed emails to the trash.
  * @see {@link https://developers.google.com/apps-script/reference/base/doc-comment-tag}
  */
-// eslint-disable-next-line no-unused-vars
 function main() {
   try {
     LOCATES.forEach((locate) => {
@@ -44,7 +43,6 @@ function main() {
  * Wrapper function to expose fixSubscriberLinks to Google Apps Script.
  * @see {@link https://developers.google.com/apps-script/guides/html/reference/run}
  */
-// eslint-disable-next-line no-unused-vars
 function fixLinksInSheet() {
   fixSubscriberLinks();
 }

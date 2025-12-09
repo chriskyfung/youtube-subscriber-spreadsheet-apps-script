@@ -69,7 +69,9 @@ export function fixSubscriberLinks() {
               ? originalDisplayText
               : cleanedUrl;
           const cleanedDisplayText = cleanDisplayText(displayText);
-          return [`=HYPERLINK("${cleanedUrl}","${cleanedDisplayText}")`];
+          return [
+            `=HYPERLINK("${sanitizeForSpreadsheet(cleanedUrl)}","${sanitizeForSpreadsheet(cleanedDisplayText)}")`,
+          ];
         }
       }
       return [formula]; // Return original formula (as a 2D array) if not a hyperlink or no match

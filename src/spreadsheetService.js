@@ -27,9 +27,9 @@ export function writeToSpreadsheet(objArray = []) {
 
     const table = objArray.map((x) => [
       x.date,
-      `=HYPERLINK("${x.subscriber.url}","${sanitizeForSpreadsheet(
-        x.subscriber.name,
-      )}")`,
+      `=HYPERLINK("${sanitizeForSpreadsheet(
+        x.subscriber.url,
+      )}","${sanitizeForSpreadsheet(x.subscriber.name)}")`,
       x.channel,
     ]);
 

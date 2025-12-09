@@ -1,4 +1,8 @@
-import { fixHyperlinkUrl, cleanDisplayText } from './utils';
+import {
+  fixHyperlinkUrl,
+  cleanDisplayText,
+  sanitizeForSpreadsheet,
+} from './utils';
 
 /**
  * @typedef {object} SubscriberInfo
@@ -23,7 +27,9 @@ export function writeToSpreadsheet(objArray = []) {
 
     const table = objArray.map((x) => [
       x.date,
-      `=HYPERLINK("${x.subscriber.url}","${x.subscriber.name}")`,
+      `=HYPERLINK("${x.subscriber.url}","${sanitizeForSpreadsheet(
+        x.subscriber.name,
+      )}")`,
       x.channel,
     ]);
 

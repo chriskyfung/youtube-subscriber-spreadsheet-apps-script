@@ -83,7 +83,7 @@ export function cleanDisplayText(text) {
  * @returns {string} The sanitized text, safe to be embedded in a formula's string literal.
  */
 export function sanitizeForSpreadsheet(text) {
-  if (typeof text !== 'string' || text.length === 0) {
+  if (typeof text !== 'string') {
     return '';
   }
   return text.replace(/"/g, '""');

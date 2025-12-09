@@ -74,3 +74,17 @@ export function cleanDisplayText(text) {
   }
   return text;
 }
+
+/**
+ * Sanitizes a string for use as a text value within a Google Sheets formula string.
+ * It escapes double quotes to prevent formula injection.
+ *
+ * @param {*} text The input text to sanitize.
+ * @returns {string} The sanitized text, safe to be embedded in a formula's string literal.
+ */
+export function sanitizeForSpreadsheet(text) {
+  if (typeof text !== 'string') {
+    return '';
+  }
+  return text.replace(/"/g, '""');
+}

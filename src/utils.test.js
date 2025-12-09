@@ -2,6 +2,7 @@ import {
   getChannelFromEmail,
   fixHyperlinkUrl,
   cleanDisplayText,
+  sanitizeForSpreadsheet,
 } from './utils';
 
 describe('getChannelFromEmail', () => {
@@ -92,5 +93,44 @@ describe('cleanDisplayText', () => {
   it('should not change text without trailing </b> tag', () => {
     const text = 'Some Channel Name';
     expect(cleanDisplayText(text)).toBe(text);
+  });
+});
+
+describe('sanitizeForSpreadsheet', () => {
+  it('should return an empty string for null or undefined input', () => {
+    expect(sanitizeForSpreadsheet(null)).toBe('');
+    expect(sanitizeForSpreadsheet(undefined)).toBe('');
+  });
+
+  it('should return an empty string for non-string input', () => {
+    expect(sanitizeForSpreadsheet(123)).toBe('');
+    expect(sanitizeForSpreadsheet({})).toBe('');
+    expect(sanitizeForSpreadsheet([])).toBe('');
+  });
+
+  it('should not change a string with no double quotes', () => {
+    const text = 'Hello world';
+    expect(sanitizeForSpreadsheet(text)).toBe(text);
+  });
+
+  it('should double up a single double quote', () => {
+    const text = 'Hello "world"';
+    expect(sanitizeForSpreadsheet(text)).toBe('Hello ""world""');
+  });
+
+  it('should double up multiple double quotes', () => {
+    const text = '"Hello" "world"';
+    expect(sanitizeForSpreadsheet(text)).toBe('""Hello"" ""world""');
+  });
+
+  it('should handle a formula injection attempt', () => {
+    const text = 'a") & IMPORTRANGE("...", "Sheet1!A1") & ("';
+    const expected = 'a"") & IMPORTRANGE(""..."", ""Sheet1!A1"") & (""';
+    expect(sanitizeForSpreadsheet(text)).toBe(expected);
+  });
+
+  it('should handle an empty string', () => {
+    const text = '';
+    expect(sanitizeForSpreadsheet(text)).toBe('');
   });
 });

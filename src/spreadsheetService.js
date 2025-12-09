@@ -1,4 +1,8 @@
-import { fixHyperlinkUrl, cleanDisplayText } from './utils';
+import {
+  fixHyperlinkUrl,
+  cleanDisplayText,
+  sanitizeForSpreadsheet,
+} from './utils';
 
 /**
  * @typedef {object} SubscriberInfo
@@ -23,7 +27,9 @@ export function writeToSpreadsheet(objArray = []) {
 
     const table = objArray.map((x) => [
       x.date,
-      `=HYPERLINK("${x.subscriber.url}","${x.subscriber.name}")`,
+      `=HYPERLINK("${sanitizeForSpreadsheet(
+        x.subscriber.url,
+      )}","${sanitizeForSpreadsheet(x.subscriber.name)}")`,
       x.channel,
     ]);
 
@@ -63,7 +69,9 @@ export function fixSubscriberLinks() {
               ? originalDisplayText
               : cleanedUrl;
           const cleanedDisplayText = cleanDisplayText(displayText);
-          return [`=HYPERLINK("${cleanedUrl}","${cleanedDisplayText}")`];
+          return [
+            `=HYPERLINK("${sanitizeForSpreadsheet(cleanedUrl)}","${sanitizeForSpreadsheet(cleanedDisplayText)}")`,
+          ];
         }
       }
       return [formula]; // Return original formula (as a 2D array) if not a hyperlink or no match

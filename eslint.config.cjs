@@ -93,12 +93,7 @@ module.exports = tseslint.config(
   // 6. Jest/test files configuration
   {
     files: ['**/*.test.ts', '**/*.spec.ts'],
-    plugins: {
-      jest: jestPlugin,
-    },
-    rules: {
-      ...jestPlugin.configs['flat/recommended'],
-    },
+    ...jestPlugin.configs['flat/recommended'],
   },
 
   // 7. Prettier configuration (must be last)

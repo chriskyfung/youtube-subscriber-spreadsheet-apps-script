@@ -1,12 +1,21 @@
 # 📩 YouTube Subscriber to Spreadsheet Google Apps Script
 
-[![GitHub Workflow CI](https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script/actions/workflows/ci.yml/badge.svg)](https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script/actions/workflows/ci.yml)
+<div align="center">
+
+[![clasp](https://img.shields.io/badge/built%20with-clasp-4285f4.svg)](https://github.com/google/clasp)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![codecov](https://codecov.io/github/chriskyfung/youtube-subscriber-spreadsheet-apps-script/graph/badge.svg)](https://codecov.io/github/chriskyfung/youtube-subscriber-spreadsheet-apps-script)
+[![GitHub Workflow CI](https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script/actions/workflows/ci.yml/badge.svg)](https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script/actions/workflows/ci.yml)
 [![GitHub license](https://img.shields.io/github/license/chriskyfung/youtube-subscriber-spreadsheet-apps-script)](LICENSE)
-[![Google Apps Script CLI](https://img.shields.io/badge/Google%20Apps%20Script%20CLI-clasp-4285F4?logo=google&logoColor=white)](https://developers.google.com/apps-script/guides/clasp)
-[![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white)](https://eslint.org/)
-[![Prettier](https://img.shields.io/badge/Prettier-F7BA3E?style=flat&logo=prettier&logoColor=white)](https://prettier.io/)
-[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+
+</div>
+
+<div align="center">
+
+[![GitHub Sponsors Default](https://img.shields.io/badge/Sponsor-GitHub-blue?style=for-the-badge&logo=github-sponsors&colorA=263238&colorB=EC407A)](https://github.com/sponsors/chriskyfung "Sponsor on GitHub")
+[![Buy Me A Coffee](https://img.shields.io/badge/Support-Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=ffdd00&colorA=263238)](https://www.buymeacoffee.com/chriskyfung "Support Coffee")
+
+</div>
 
 This project is a [Google Apps Script](https://developers.google.com/apps-script) designed to extract and record information about your YouTube subscribers from Gmail to a Google Sheet. It leverages the [Clasp CLI](https://developers.google.com/apps-script/guides/clasp) for seamless development and deployment.
 
@@ -37,20 +46,20 @@ Before you begin, ensure you have the following installed:
 
 ### ⚙️ Installation
 
-1.  **Clone the repository:**
+1. **Clone the repository:**
 
     ```bash
     git clone https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script.git
     cd youtube-subscriber-spreadsheet-apps-script
     ```
 
-2.  **Install dependencies:**
+2. **Install dependencies:**
 
     ```bash
     npm install
     ```
 
-3.  **Log in to Clasp:**
+3. **Log in to Clasp:**
 
     ```bash
     npm run clasp:login
@@ -58,7 +67,7 @@ Before you begin, ensure you have the following installed:
 
     This will open a browser window and ask you to log in to your Google account. Ensure you log in with the account you want to use for Google Apps Script.
 
-4.  **Create a new Google Apps Script project:**
+4. **Create a new Google Apps Script project:**
 
     ```bash
     npm run clasp:create
@@ -75,7 +84,7 @@ Before you begin, ensure you have the following installed:
     }
     ```
 
-5.  **Push the project to Google Apps Script:**
+5. **Push the project to Google Apps Script:**
 
     ```bash
     npm run push
@@ -107,9 +116,9 @@ The script currently supports the following languages for parsing subscriber not
 
 To add support for a new language, you would need to:
 
-1.  Add the language code to the `LOCATES` array in `src/constants.js`.
-2.  Add the corresponding localized phrase to the `LANG` object in `src/constants.js`.
-3.  Potentially adjust the `regex` function if the email body structure for the new language significantly differs.
+1. Add the language code to the `LOCATES` array in `src/constants.js`.
+2. Add the corresponding localized phrase to the `LANG` object in `src/constants.js`.
+3. Potentially adjust the `regex` function if the email body structure for the new language significantly differs.
 
 ## 🔍 Troubleshooting
 
@@ -119,27 +128,27 @@ Here are some common issues and their solutions:
 
 - **Issue**: You're having trouble logging in with `npm run clasp:login` or encountering authentication errors.
 - **Solution**:
-  1.  Ensure you have a stable internet connection.
-  2.  Try clearing your browser's cookies and cache before attempting to log in again.
-  3.  Verify that you are logging in with the correct Google account that has access to Google Apps Script.
-  4.  If the browser window doesn't open, try running `clasp login` directly in your terminal to see if there are any specific error messages.
+  1. Ensure you have a stable internet connection.
+  2. Try clearing your browser's cookies and cache before attempting to log in again.
+  3. Verify that you are logging in with the correct Google account that has access to Google Apps Script.
+  4. If the browser window doesn't open, try running `clasp login` directly in your terminal to see if there are any specific error messages.
 
 ### `npm run push` fails with permissions errors
 
 - **Issue**: The `npm run push` command gives errors related to insufficient permissions or API access.
 - **Solution**:
-  1.  **Enable Google Apps Script API**: Go to the [Google Cloud Console](https://console.cloud.google.com/) -> APIs & Services -> Dashboard. Search for and ensure the "Google Apps Script API" is enabled for your project.
-  2.  **Authorize Scopes**: When you first push the project, Google may ask for authorization for certain scopes (e.g., Gmail, Spreadsheets). Ensure you grant these permissions. If you previously denied them, you might need to revoke access for Clasp in your Google account settings and re-authenticate.
-  3.  **Check `appsscript.json`**: Ensure your `appsscript.json` file (the manifest file) correctly defines the required [OAuth scopes](https://developers.google.com/apps-script/concepts/scopes). For example, to interact with Gmail and Spreadsheets, you'll need scopes like `https://www.googleapis.com/auth/gmail.readonly` and `https://www.googleapis.com/auth/spreadsheets`.
+  1. **Enable Google Apps Script API**: Go to the [Google Cloud Console](https://console.cloud.google.com/) -> APIs & Services -> Dashboard. Search for and ensure the "Google Apps Script API" is enabled for your project.
+  2. **Authorize Scopes**: When you first push the project, Google may ask for authorization for certain scopes (e.g., Gmail, Spreadsheets). Ensure you grant these permissions. If you previously denied them, you might need to revoke access for Clasp in your Google account settings and re-authenticate.
+  3. **Check `appsscript.json`**: Ensure your `appsscript.json` file (the manifest file) correctly defines the required [OAuth scopes](https://developers.google.com/apps-script/concepts/scopes). For example, to interact with Gmail and Spreadsheets, you'll need scopes like `https://www.googleapis.com/auth/gmail.readonly` and `https://www.googleapis.com/auth/spreadsheets`.
 
 ### Script runs locally but not on Google Apps Script
 
 - **Issue**: Your script works when tested locally (if applicable), but fails or doesn't behave as expected after `npm run push` and running it in Google Apps Script environment.
 - **Solution**:
-  1.  **Check Logs**: Access the Google Apps Script project online (script.google.com), go to "Executions" or "Logs" to see detailed error messages.
-  2.  **Manifest File (`appsscript.json`)**: Ensure your `appsscript.json` correctly defines all necessary services, triggers, and OAuth scopes.
-  3.  **Environment Differences**: Google Apps Script environment is server-side JavaScript. Some Node.js specific features or global objects might not be available. Ensure your code is compatible with the Apps Script runtime.
-  4.  **Time-driven Triggers**: If your script is meant to run automatically, verify that you have set up a time-driven trigger in the Google Apps Script editor (via the clock icon on the left sidebar).
+  1. **Check Logs**: Access the Google Apps Script project online (script.google.com), go to "Executions" or "Logs" to see detailed error messages.
+  2. **Manifest File (`appsscript.json`)**: Ensure your `appsscript.json` correctly defines all necessary services, triggers, and OAuth scopes.
+  3. **Environment Differences**: Google Apps Script environment is server-side JavaScript. Some Node.js specific features or global objects might not be available. Ensure your code is compatible with the Apps Script runtime.
+  4. **Time-driven Triggers**: If your script is meant to run automatically, verify that you have set up a time-driven trigger in the Google Apps Script editor (via the clock icon on the left sidebar).
 
 ### Incorrect `rootDir` in `.clasp.json`
 

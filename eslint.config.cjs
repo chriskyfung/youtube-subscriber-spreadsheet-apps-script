@@ -54,6 +54,7 @@ module.exports = tseslint.config(
   // 4. Configuration for Google Apps Script source files (TypeScript)
   {
     files: ['src/**/*.ts'],
+    ignores: ['**/*.test.ts', '**/*.spec.ts'],
     extends: [
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
@@ -79,6 +80,7 @@ module.exports = tseslint.config(
   // 5. Configuration for Google Apps Script source files (JavaScript)
   {
     files: ['src/**/*.js'],
+    ignores: ['**/*.test.js', '**/*.spec.js'],
     languageOptions: {
       globals: {
         ...globals.es2021,
@@ -92,8 +94,13 @@ module.exports = tseslint.config(
 
   // 6. Jest/test files configuration
   {
-    files: ['**/*.test.ts', '**/*.spec.ts'],
     ...jestPlugin.configs['flat/recommended'],
+    files: ['**/*.test.js', '**/*.spec.js', '**/*.test.ts', '**/*.spec.ts'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
   },
 
   // 7. Prettier configuration (must be last)

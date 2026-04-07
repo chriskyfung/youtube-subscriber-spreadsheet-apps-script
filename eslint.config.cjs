@@ -99,6 +99,7 @@ module.exports = tseslint.config(
     languageOptions: {
       globals: {
         ...globals.node,
+        ...globals.jest,
       },
     },
   },

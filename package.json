@@ -76,6 +76,9 @@
       "eslint --fix",
       "prettier --write",
       "npm run test:file"
+    ],
+    "**/*.{json,md}": [
+      "prettier --write"
     ]
   }
 }

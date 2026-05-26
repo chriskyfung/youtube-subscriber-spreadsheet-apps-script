@@ -48,13 +48,13 @@ To get started with the development, you'll need to have [Node.js](https://nodej
 
 This project uses several npm scripts to streamline development:
 
--   `npm run build`: Build the project using Rollup.
--   `npm test`: Run tests with Jest.
--   `npm run lint:check`: Check for linting errors with ESLint.
--   `npm run lint:fix`: Automatically fix linting errors.
--   `npm run format:check`: Check for formatting issues with Prettier.
--   `npm run format:fix`: Automatically fix formatting issues.
--   `npm run check:all`: Run all checks (linting, formatting, types, and tests).
+- `npm run build`: Build the project using Rollup.
+- `npm test`: Run tests with Jest.
+- `npm run lint:check`: Check for linting errors with ESLint.
+- `npm run lint:fix`: Automatically fix linting errors.
+- `npm run format:check`: Check for formatting issues with Prettier.
+- `npm run format:fix`: Automatically fix formatting issues.
+- `npm run check:all`: Run all checks (linting, formatting, types, and tests).
 
 ## Coding Style
 
@@ -66,6 +66,6 @@ A pre-commit hook is set up with Husky and lint-staged to automatically format a
 
 Before you submit a pull request, please make sure you have done the following:
 
--   Run `npm run check:all` to ensure all checks pass.
--   Update the documentation if you have made any changes that require it.
--   Ensure your pull request has a clear title and description.
+- Run `npm run check:all` to ensure all checks pass.
+- Update the documentation if you have made any changes that require it.
+- Ensure your pull request has a clear title and description.

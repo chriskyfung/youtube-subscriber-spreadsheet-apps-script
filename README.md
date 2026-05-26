@@ -12,8 +12,8 @@
 
 <div align="center">
 
-[![GitHub Sponsors Default](https://img.shields.io/badge/Sponsor-GitHub-blue?style=for-the-badge&logo=github-sponsors&colorA=263238&colorB=EC407A)](https://github.com/sponsors/chriskyfung "Sponsor on GitHub")
-[![Buy Me A Coffee](https://img.shields.io/badge/Support-Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=ffdd00&colorA=263238)](https://www.buymeacoffee.com/chriskyfung "Support Coffee")
+[![GitHub Sponsors Default](https://img.shields.io/badge/Sponsor-GitHub-blue?style=for-the-badge&logo=github-sponsors&colorA=263238&colorB=EC407A)](https://github.com/sponsors/chriskyfung 'Sponsor on GitHub')
+[![Buy Me A Coffee](https://img.shields.io/badge/Support-Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=ffdd00&colorA=263238)](https://www.buymeacoffee.com/chriskyfung 'Support Coffee')
 
 </div>
 
@@ -48,49 +48,49 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository:**
 
-    ```bash
-    git clone https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script.git
-    cd youtube-subscriber-spreadsheet-apps-script
-    ```
+   ```bash
+   git clone https://github.com/chriskyfung/youtube-subscriber-spreadsheet-apps-script.git
+   cd youtube-subscriber-spreadsheet-apps-script
+   ```
 
 2. **Install dependencies:**
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 3. **Log in to Clasp:**
 
-    ```bash
-    npm run clasp:login
-    ```
+   ```bash
+   npm run clasp:login
+   ```
 
-    This will open a browser window and ask you to log in to your Google account. Ensure you log in with the account you want to use for Google Apps Script.
+   This will open a browser window and ask you to log in to your Google account. Ensure you log in with the account you want to use for Google Apps Script.
 
 4. **Create a new Google Apps Script project:**
 
-    ```bash
-    npm run clasp:create
-    ```
+   ```bash
+   npm run clasp:create
+   ```
 
-    Clasp CLI will prompt you to select a project type. Choose `"sheets"` to create a new Google Spreadsheet-bound script.
+   Clasp CLI will prompt you to select a project type. Choose `"sheets"` to create a new Google Spreadsheet-bound script.
 
-    _Self-Correction Note:_ After creating the project, it is highly recommended to change the `rootDir` attribute in the generated `.clasp.json` file to `.`. This ensures better project portability and avoids potential issues with Clasp's directory handling.
+   _Self-Correction Note:_ After creating the project, it is highly recommended to change the `rootDir` attribute in the generated `.clasp.json` file to `.`. This ensures better project portability and avoids potential issues with Clasp's directory handling.
 
-    ```json
-    {
-      "scriptId": "YOUR_SCRIPT_ID",
-      "rootDir": "."
-    }
-    ```
+   ```json
+   {
+     "scriptId": "YOUR_SCRIPT_ID",
+     "rootDir": "."
+   }
+   ```
 
 5. **Push the project to Google Apps Script:**
 
-    ```bash
-    npm run push
-    ```
+   ```bash
+   npm run push
+   ```
 
-    The **first time** you execute this command, Clasp CLI will ask you to overwrite the manifest file (`appsscript.json`) of the project. Type `y` and press `Enter`. This file contains the necessary configuration for Google to manage permissions and access to your script.
+   The **first time** you execute this command, Clasp CLI will ask you to overwrite the manifest file (`appsscript.json`) of the project. Type `y` and press `Enter`. This file contains the necessary configuration for Google to manage permissions and access to your script.
 
 ## 🛠️ Configuration
 

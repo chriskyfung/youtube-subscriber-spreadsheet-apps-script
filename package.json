@@ -63,6 +63,9 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.59.4"
   },
+  "overrides": {
+    "uuid": ">=11.1.1"
+  },
   "keywords": [
     "clasp",
     "google-apps-script",

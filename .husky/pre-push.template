@@ -4,12 +4,12 @@
 echo '👷🏻 Running tests before pushing'
 
 # Run tests
-npm run test || (
+pnpm run test || (
         echo '🚨 👷🏻 Tests failed
         
         Some tests did not pass, please check the above errors.
 
-        💡 You can also run `npm run test` to see the issues and fix them manually.
+        💡 You can also run `pnpm run test` to see the issues and fix them manually.
         '
         false;
 )

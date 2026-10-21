@@ -30,7 +30,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 
 - [ ] My code follows the style guidelines of this project.
 - [ ] I have performed a self-review of my own code.
-- [ ] I have run `npm run check:all` and all checks pass.
+- [ ] I have run `pnpm run check:all` and all checks pass.
 - [ ] I have commented my code, particularly in hard-to-understand areas.
 - [ ] I have made corresponding changes to the documentation.
 - [ ] My changes generate no new warnings.

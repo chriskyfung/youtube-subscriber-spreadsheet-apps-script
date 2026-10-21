@@ -4,17 +4,17 @@
 echo '🏗️👷 Styling, testing and building your project before committing'
 
 # Edit the command sequence in package.json
-npx lint-staged
+pnpx lint-staged
 
 echo '👷🏻 Building project...'
 
 # Build project
-npm run build || (
+pnpm run build || (
         echo '🚨 👷🏻 Build try failed
         
         Build process failed, please check the above errors.
 
-        💡 You can also run `npm run build` to see the issues and fix them manually.
+        💡 You can also run `pnpm run build` to see the issues and fix them manually.
         '
         false;
 )
@@ -22,12 +22,12 @@ npm run build || (
 echo '✅ 👷🏻 Project built successfully. Removing build artifacts...'
 
 # Remove build artifacts
-npm run build:clean || (
+pnpm run build:clean || (
         echo '🚨 👷🏻 Build clean failed
         
         Build clean process failed, please check the above errors.
 
-        💡 You can also run `npm run build:clean` to see the issues and fix them manually.
+        💡 You can also run `pnpm run build:clean` to see the issues and fix them manually.
         '
         false;
 )

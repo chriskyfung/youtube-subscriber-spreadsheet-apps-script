@@ -37,11 +37,11 @@ These instructions will get you a copy of the project up and running on your loc
 Before you begin, ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/en/download/) (LTS version recommended)
-- [npm](https://www.npmjs.com/get-npm) (comes with Node.js)
+- [pnpm](https://pnpm.io/installation) (comes with Node.js)
 - [Clasp](https://developers.google.com/apps-script/guides/clasp) (Google Apps Script CLI)
 
   ```bash
-  npm install -g @google/clasp
+  pnpm install -g @google/clasp
   ```
 
 ### ⚙️ Installation
@@ -56,13 +56,13 @@ Before you begin, ensure you have the following installed:
 2. **Install dependencies:**
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. **Log in to Clasp:**
 
    ```bash
-   npm run clasp:login
+   pnpm run clasp:login
    ```
 
    This will open a browser window and ask you to log in to your Google account. Ensure you log in with the account you want to use for Google Apps Script.
@@ -70,7 +70,7 @@ Before you begin, ensure you have the following installed:
 4. **Create a new Google Apps Script project:**
 
    ```bash
-   npm run clasp:create
+   pnpm run clasp:create
    ```
 
    Clasp CLI will prompt you to select a project type. Choose `"sheets"` to create a new Google Spreadsheet-bound script.
@@ -87,7 +87,7 @@ Before you begin, ensure you have the following installed:
 5. **Push the project to Google Apps Script:**
 
    ```bash
-   npm run push
+   pnpm run push
    ```
 
    The **first time** you execute this command, Clasp CLI will ask you to overwrite the manifest file (`appsscript.json`) of the project. Type `y` and press `Enter`. This file contains the necessary configuration for Google to manage permissions and access to your script.
@@ -126,16 +126,16 @@ Here are some common issues and their solutions:
 
 ### `clasp:login` fails or authentication issues
 
-- **Issue**: You're having trouble logging in with `npm run clasp:login` or encountering authentication errors.
+- **Issue**: You're having trouble logging in with `pnpm run clasp:login` or encountering authentication errors.
 - **Solution**:
   1. Ensure you have a stable internet connection.
   2. Try clearing your browser's cookies and cache before attempting to log in again.
   3. Verify that you are logging in with the correct Google account that has access to Google Apps Script.
   4. If the browser window doesn't open, try running `clasp login` directly in your terminal to see if there are any specific error messages.
 
-### `npm run push` fails with permissions errors
+### `pnpm run push` fails with permissions errors
 
-- **Issue**: The `npm run push` command gives errors related to insufficient permissions or API access.
+- **Issue**: The `pnpm run push` command gives errors related to insufficient permissions or API access.
 - **Solution**:
   1. **Enable Google Apps Script API**: Go to the [Google Cloud Console](https://console.cloud.google.com/) -> APIs & Services -> Dashboard. Search for and ensure the "Google Apps Script API" is enabled for your project.
   2. **Authorize Scopes**: When you first push the project, Google may ask for authorization for certain scopes (e.g., Gmail, Spreadsheets). Ensure you grant these permissions. If you previously denied them, you might need to revoke access for Clasp in your Google account settings and re-authenticate.
@@ -143,7 +143,7 @@ Here are some common issues and their solutions:
 
 ### Script runs locally but not on Google Apps Script
 
-- **Issue**: Your script works when tested locally (if applicable), but fails or doesn't behave as expected after `npm run push` and running it in Google Apps Script environment.
+- **Issue**: Your script works when tested locally (if applicable), but fails or doesn't behave as expected after `pnpm run push` and running it in Google Apps Script environment.
 - **Solution**:
   1. **Check Logs**: Access the Google Apps Script project online (script.google.com), go to "Executions" or "Logs" to see detailed error messages.
   2. **Manifest File (`appsscript.json`)**: Ensure your `appsscript.json` correctly defines all necessary services, triggers, and OAuth scopes.
@@ -152,7 +152,7 @@ Here are some common issues and their solutions:
 
 ### Incorrect `rootDir` in `.clasp.json`
 
-- **Issue**: After `npm run clasp:create`, the `rootDir` in `.clasp.json` is not set to `.`, leading to deployment issues.
+- **Issue**: After `pnpm run clasp:create`, the `rootDir` in `.clasp.json` is not set to `.`, leading to deployment issues.
 - **Solution**: Manually edit the `.clasp.json` file in your project's root directory and change the `rootDir` value to `.` (a single dot). This tells Clasp to consider your entire project directory as the root for deployment.
 
   ```json

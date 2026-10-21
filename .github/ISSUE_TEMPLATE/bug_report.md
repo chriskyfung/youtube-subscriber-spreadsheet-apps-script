@@ -10,8 +10,8 @@ assignees: ''
 
 Please check the box that best describes the issue. This helps us understand where to look.
 
-- [ ] **Runtime Bug**: An issue with the script when it's running in the Google Apps Script environment (after `npm run push`).
-- [ ] **Local Development Bug**: An issue with the local development setup (e.g., `npm install`, `npm test`, `npm run build`, linting, formatting).
+- [ ] **Runtime Bug**: An issue with the script when it's running in the Google Apps Script environment (after `pnpm run push`).
+- [ ] **Local Development Bug**: An issue with the local development setup (e.g., `pnpm install`, `pnpm test`, `pnpm run build`, linting, formatting).
 
 ---
 
@@ -26,7 +26,7 @@ A clear and concise description of what the bug is.
 Please provide the following details about your development environment.
 
 - **Node.js version**: `node --version`
-- **npm version**: `npm --version`
+- **pnpm version**: `pnpm --version`
 - **`@google/clasp` version**: `clasp --version`
 - **OS**: (e.g., Windows 10, macOS Sonoma)
 
@@ -72,7 +72,7 @@ const LOCALE = 'en';
 **_(Please fill out this section ONLY if you checked "Local Development Bug")_**
 
 **Command Executed**
-Which `npm` script or command did you run? (e.g., `npm test`, `npm run build`, `npm run lint:fix`)
+Which `pnpm` script or command did you run? (e.g., `pnpm test`, `pnpm run build`, `pnpm run lint:fix`)
 
 **Actual Behavior**
 A clear and concise description of what actually happened.

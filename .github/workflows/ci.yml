@@ -6,37 +6,44 @@ on:
   pull_request:
     branches: [main]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x]
-
-    permissions:
-      contents: read
+        node-version: [22.x, 24.x]
 
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout
+        uses: actions/checkout@v7
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run lint check
-        run: npm run lint:check
+        run: pnpm run lint:check
 
       - name: Run type check
-        run: npm run types:check
+        run: pnpm run types:check
 
       - name: Run tests
-        run: npm test
+        run: pnpm test
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v7
@@ -45,4 +52,4 @@ jobs:
           slug: chriskyfung/youtube-subscriber-spreadsheet-apps-script
 
       - name: Build project
-        run: npm run build
+        run: pnpm run build

@@ -29,7 +29,7 @@ We welcome pull requests! Please follow these steps to contribute:
 
 ## Development Setup
 
-To get started with the development, you'll need to have [Node.js](https://nodejs.org/) (version >= 20.0.0) and [npm](https://www.npmjs.com/) installed.
+To get started with the development, you'll need to have [Node.js](https://nodejs.org/) (version >= 22.0.0) and [pnpm](https://pnpm.io/) installed.
 
 1.  **Clone the repository:**
 
@@ -41,20 +41,20 @@ To get started with the development, you'll need to have [Node.js](https://nodej
 2.  **Install dependencies:**
 
     ```bash
-    npm install
+    pnpm install
     ```
 
 ### Available Scripts
 
 This project uses several npm scripts to streamline development:
 
-- `npm run build`: Build the project using Rollup.
-- `npm test`: Run tests with Jest.
-- `npm run lint:check`: Check for linting errors with ESLint.
-- `npm run lint:fix`: Automatically fix linting errors.
-- `npm run format:check`: Check for formatting issues with Prettier.
-- `npm run format:fix`: Automatically fix formatting issues.
-- `npm run check:all`: Run all checks (linting, formatting, types, and tests).
+- `pnpm run build`: Build the project using Rollup.
+- `pnpm test`: Run tests with Jest.
+- `pnpm run lint:check`: Check for linting errors with ESLint.
+- `pnpm run lint:fix`: Automatically fix linting errors.
+- `pnpm run format:check`: Check for formatting issues with Prettier.
+- `pnpm run format:fix`: Automatically fix formatting issues.
+- `pnpm run check:all`: Run all checks (linting, formatting, types, and tests).
 
 ## Coding Style
 
@@ -66,6 +66,6 @@ A pre-commit hook is set up with Husky and lint-staged to automatically format a
 
 Before you submit a pull request, please make sure you have done the following:
 
-- Run `npm run check:all` to ensure all checks pass.
+- Run `pnpm run check:all` to ensure all checks pass.
 - Update the documentation if you have made any changes that require it.
 - Ensure your pull request has a clear title and description.

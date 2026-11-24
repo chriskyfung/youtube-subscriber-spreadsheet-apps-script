@@ -8,34 +8,19 @@ updates:
   - package-ecosystem: 'npm' # See documentation for possible values
     directory: '/' # Location of package manifests
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     cooldown:
-      default-days: 5
+      default-days: 7
       semver-major-days: 30
       semver-minor-days: 7
       semver-patch-days: 3
+      include:
+        - '*' # include all dependencies for cooldown
     groups:
       production-dependencies:
         dependency-type: 'production'
-      eslint:
-        patterns:
-          - '*eslint*'
-          - 'eslint'
-          - '@eslint/js'
-          - 'globals'
-      jest:
-        patterns:
-          - '*jest*'
-          - 'jest'
       development-dependencies:
         dependency-type: 'development'
-        exclude-patterns:
-          - '*eslint*'
-          - 'eslint'
-          - '@eslint/js'
-          - 'globals'
-          - '*jest*'
-          - 'jest'
     commit-message:
       prefix: 'chore'
       include: 'scope'
@@ -44,3 +29,9 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+    groups:
+      all-actions:
+        patterns:
+          - '*'
+    commit-message:
+      prefix: chore(actions)
